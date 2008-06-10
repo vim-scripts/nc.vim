@@ -24,12 +24,14 @@ endif
 syn keyword cStatement when priority to
 
 syn keyword cType output serial baud input mtimer stimer out in msg_tag 
-syn keyword cType sci boolean far s32_type bit domain_struct
+syn keyword cType sci boolean far s32_type bit domain_struct online
 
 syn match cLabel display "IO_[0-9]\{1,2}"
 
 " Neuron C does not support #if 0 directive ...
 syn match cError display "#if 0"
+syn match ncError /[ \t]*\#if[ \t]\+ 0[ \t]$/
+syn keyword cError volatile
 
 syn keyword ncEvent timer_expires reset io_in_ready io_changes msg_arrives
 
@@ -39,9 +41,10 @@ syn keyword ncFunctions s32_type s32_minus_one s32_from_long s32_from_ulong s32_
 
 syn keyword ncMacro bind_info s32_zero
 
+
 hi def link ncEvent Function
 hi def link ncFunctions Function
 hi def link ncMacro Macro
-
+hi def link ncError Error
 
 let b:current_syntax = "nc"
